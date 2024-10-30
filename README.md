@@ -57,17 +57,8 @@ template = system_prompt + user_prompt + assistant_thinking + assistant_answer
 
 ### Hyperparameters
 
-- model
-    ```
-    # Pretrained model name or path
-    model_name_or_path: meta-llama/Llama-3.1-8B 
-    # Whether to trust remote code
-    trust_remote_code: True
-    # The max token length
-    model_max_length: 2048
-    ```
+train_cfgs
 
-- train
     ```
     # The deepspeed configuration
     ds_cfgs: ds_z3_config.json
@@ -107,7 +98,8 @@ template = system_prompt + user_prompt + assistant_thinking + assistant_answer
     max_grad_norm: 1.0
     ```
 
-- dataset
+data_cfgs
+
     ```
     # Datasets to use for training
     train_datasets: HKAIR-Lab/O1aw-sft-15k
@@ -115,10 +107,11 @@ template = system_prompt + user_prompt + assistant_thinking + assistant_answer
     train_split: train
     ```
 
-- output
+model_cfgs
+
     ```
     # Pretrained model name or path
-    model_name_or_path: null
+    model_name_or_path: meta-llama/Llama-3.1-8B 
     # Whether to trust remote code
     trust_remote_code: True
     # The max token length
