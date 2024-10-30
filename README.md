@@ -7,36 +7,123 @@
 
 放 3 - 5 典型的case
 
-Dataset Overview
+# Dataset Overview
 
-O1aw-Dataset is a comprehensive legal question-answering dataset derived from the CLIC, designed to evaluate and enhance legal reasoning capabilities in language models. The dataset follows the O1-style format, featuring complex legal scenarios that require multi-step reasoning.
+O1aw-Dataset is a comprehensive legal question-thought-answer dataset, designed to evaluate and enhance legal reasoning capabilities in language models. The dataset follows the O1-style format, featuring complex legal scenarios that require multi-step reasoning.
 
 ## Our training dataset
+How was our dataset constructed? First, we crawled and cleaned raw legal materials from the internet, including [Hong Kong e-Legislation](https://www.elegislation.gov.hk). Then, we used GPT-4o to generate corresponding questions and thought-answer pairs based on the raw legal materials.
 
-Size: 15959 QA pairs with Chain-of-Thought annotations
-  Source:    CLIC   （港大法网）
-  Language: Simplified Chinese）
-  Format: JSON structured data
-  Difficulty level: Moderate to Advanced for legal professionals or law students
-  Question Categories
-  Case Analysis 
-  Legal Application
-  Legal Concept Explanation
+The dataset contains 15,959 question-thought-answer triples, each equipped with complete chain-of-thought annotations. All content is presented in Simplified Chinese and stored in a structured JSON format. The difficulty level of the questions in this dataset is intermediate to advanced for legal professionals and law school students.
 
-  Each Q-T-A pair includes:
-    Detailed question prompt
-    3-5 step Chain-of-Thought reasoning, for example:
-Validated answer
-Quality Assurance
-Expert-reviewed reasoning chains
-Multi-stage validation process
-Reflective verification steps
-Consistency checks across similar cases
-  Intended Use
-  Legal education and training
-  Development of legal AI systems
-  Assessment of legal reasoning capabilities
-  Benchmark for legal language models
+The question types cover case analysis, legal application, explanation of legal concepts and so on. Each QTA triple includes detailed question prompt, a 3-5 step chain-of-thought reasoning process, and answer. The reasoning process involves multi-stage validation, reflective verification steps, and cross-case consistency checks, ensuring diversity in reasoning.
+
+### Prompts for QTA generation
+Here is our prompt template for Question generation:
+```python
+SYSTEM_PROMPT: str = """
+# Task
+基于以下参考法律材料，生成至少{n}个法律问题。问题需要满足以下要求：
+
+1. 复杂度要求：
+- 问题的答案需要通过对参考法律材料的深入理解和分析才能得出
+- 应该是一个开放性问题，需要进行推理和解释
+- 不能是简单的是非题或事实性问题
+
+2. 问题形式：
+- 可以是案例分析题
+- 可以是法律适用题
+- 可以是法律概念解释题
+
+3. 问题结构：
+- 明确的问题陈述
+
+4. 难度级别：
+中等难度，适合法律专业学生或从业者思考和讨论
+
+
+5. 输出格式：
+请严格使用JSON格式输出，结构如下：
+{{
+  "questions": [
+    {{
+      "id": 1,
+      "type": "案例分析/法律适用/概念解释...", 
+      "question": "具体问题",
+    }},
+    {{
+      "id": 2,
+      ...
+    }},
+    {{
+      "id": 3,
+      ...
+    }}
+  ]
+}}
+"""
+
+USER_PROMPT: str = """
+# 参考法律材料
+{prompt}
+
+# 提示
+生成的问题应该与提供的参考法律材料直接相关，但是必须假装参考法律材料对你不可见。
+请以JSON格式输出：
+"""
+```
+
+Here is our prompt template for Thought(COT) and Answer generation:
+```python
+SYSTEM_PROMPT: str = """你是一个专家级的AI助手，能够逐步解释推理过程。你将收到一个问题和相关参考资料。你的任务是重构并展示通向正确答案的完整推理路径。
+
+对于每个推理步骤，提供一个标题，描述你在该步骤中所做的事情，以及内容。但必须展示至少三种不同的方法或途径来得出该答案。
+
+要求：
+1. 使用3-5个推理步骤
+2. 探索多种方法以达到答案
+3. 通过不同的方法验证给定答案
+4. 考虑潜在的替代答案并解释为何被拒绝
+5. 你必须假装没有参考资料，只可以把参考资料当作自己的知识
+6. 考虑你可能是错的，如果你的推理是错的，它会在哪里
+7. 充分测试所有其他可能性。你可能会错
+8. 当你说你正在重新检查时，请真正重新检查，并使用另一种方法进行，不要只是说你正在重新检查
+
+以JSON格式回应，包含以下键：
+- 'title': 当前推理步骤的描述
+- 'content': 该步骤的详细解释
+- 'next_action': 'continue' 或 'final_answer'
+有效的JSON响应示例：
+[
+  {{ 
+      "title": "分析给定信息", 
+      "content": "首先，让我们检查问题，以识别将指导我们解决过程的关键要素……", 
+      "next_action": "continue"
+  }},
+  {{ 
+      "title": "...", 
+      "content": "...", 
+      "next_action": "continue"
+  }},
+  ...
+  {{ 
+      "title": "...", 
+      "content": "...", 
+      "next_action": "final_answer"
+  }}
+]
+"""
+
+USER_PROMPT: str = """
+# 问题：
+{prompt}
+# 参考资料：
+{references}
+
+请以JSON格式输出：
+"""
+
+```
 
 
 ## Training details
