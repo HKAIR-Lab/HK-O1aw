@@ -122,6 +122,7 @@
         </tr>
     </tbody>
 </table>
+
 # Dataset Overview
 
 O1aw-Dataset is a comprehensive legal question-thought-answer dataset, designed to evaluate and enhance legal reasoning capabilities in language models. The dataset follows the O1-style format, featuring complex legal scenarios that require multi-step reasoning.
