@@ -41,9 +41,91 @@ Consistency checks across similar cases
 
 ## Training details
 
-We use [Align-Anything](https://github.com/PKU-Alignment/align-anything) framework to conduct SFT training on [Llama-3.1-8B](https://huggingface.co/meta-llama/Llama-3.1-8B). The training dataset and hyper-parameters used are detailed below.
+We use [Align-Anything](https://github.com/PKU-Alignment/align-anything) framework to conduct SFT training on [Llama-3.1-8B](https://huggingface.co/meta-llama/Llama-3.1-8B). The training dataset and hyperparameters used are detailed below.
 
-<SFT>
+### Chat Template
+
+Specifically, in SFT training, Q, T, and A in the [training dataset](https://huggingface.co/datasets/HKAIR-Lab/O1aw-sft-16k) are segmented by reserved tokens in the tokenizer of Llama-3.1-8B. For more details, see template:
+
+```
+system_prompt: str = ''
+user_prompt: str = '<|reserved_special_token_0|>{input}<|reserved_special_token_1|>\n'
+assistant_thinking: str = '<|reserved_special_token_2|>{thinking}<|reserved_special_token_3|>\n'
+assistant_answer: str = '<|reserved_special_token_4|>{answer}<|reserved_special_token_5|>'
+template = system_prompt + user_prompt + assistant_thinking + assistant_answer
+```
+
+### Hyperparameters
+
+- model
+    ```
+    # Pretrained model name or path
+    model_name_or_path: meta-llama/Llama-3.1-8B 
+    # Whether to trust remote code
+    trust_remote_code: True
+    # The max token length
+    model_max_length: 2048
+    ```
+
+- train
+    ```
+    # The deepspeed configuration
+    ds_cfgs: ds_z3_config.json
+    # Number of training epochs
+    epochs: 3
+    # Seed for random number generator
+    seed: 42
+    # Batch size per device for training
+    per_device_train_batch_size: 4
+    # Batch size per device for evaluation
+    per_device_eval_batch_size: 4
+    # The number of gradient accumulation steps
+    gradient_accumulation_steps: 16
+    # Whether to use gradient checkpointing
+    gradient_checkpointing: True
+    # Initial learning rate
+    learning_rate: 2.e-5
+    # Type of learning rate scheduler
+    lr_scheduler_type: cosine
+    # Ratio of warmup steps for learning rate
+    lr_warmup_ratio: 0.03
+    # Weight decay coefficient
+    weight_decay: 0.0
+    # Hyper-parameters for adam optimizer
+    adam_betas: [0.9, 0.95]
+    # Hyper-parameters for adam epsilon
+    adam_epsilon: 1.e-8
+    # Enable bfloat 16 precision
+    bf16: True
+    # Enable float 16 precision
+    fp16: False
+    # The strategy of evaluation, choosing form [epoch, steps]
+    eval_strategy: epoch
+    # The evaluation interval in step-wise evaluation case
+    eval_interval: 10
+    # The max norm of gradient
+    max_grad_norm: 1.0
+    ```
+
+- dataset
+    ```
+    # Datasets to use for training
+    train_datasets: HKAIR-Lab/O1aw-sft-15k
+    # The split of train datasets
+    train_split: train
+    ```
+
+- output
+    ```
+    # Pretrained model name or path
+    model_name_or_path: null
+    # Whether to trust remote code
+    trust_remote_code: True
+    # The max token length
+    model_max_length: 2048
+    ```
+
+For other hyperparameters, we use the default value in the [configure file](https://github.com/PKU-Alignment/align-anything/blob/main/align_anything/configs/train/text_to_text/sft.yaml). 
 
 ## Evaluation for HK Laws
 
