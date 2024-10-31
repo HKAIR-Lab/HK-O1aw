@@ -1,4 +1,4 @@
-# HK-O1-Law
+# HK-O1aw
 
 [包括模型介绍，参数，预期的场景@Sirui Han，讲一讲背景]
 6 ~ 7 行
@@ -329,7 +329,7 @@ In the planning, coming soon.
 
 
 ## Our teams
-
+HK-O1aw is developed by the HKAIR research team, part of HKGAI. We specialize in developing reasoning techniques for large language models (LLMs). If you have any questions about HK-O1aw, feel free to reach out to us on the GitHub issue page.
 
 ## Citation
 Please cite the repo if you use the data or code in this repo.
@@ -337,15 +337,15 @@ Please cite the repo if you use the data or code in this repo.
 ```bibtex
 @misc{align_anything,
   author = {HKAIR Lab},
-  title = {HK-O1-Law Models: A HK Law Large Language Model using O1's Slow Thinking},
+  title = {HK-O1aw Models: A HK Law Large Language Model using O1's Slow Thinking},
   year = {2024},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/HKAIR-Lab/HK-O1-Law}},
+  howpublished = {\url{https://github.com/HKAIR-Lab/HK-O1aw}},
 }
 ```
 
 
 ## License
 
-HK-O1-Law models and datasets are released under Apache License 2.0.
+HK-O1aw models and datasets are released under Apache License 2.0.
