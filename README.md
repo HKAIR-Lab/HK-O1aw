@@ -335,7 +335,7 @@ HK-O1aw is developed by the HKAIR research team, part of HKGAI. We specialize in
 Please cite the repo if you use the data or code in this repo.
 
 ```bibtex
-@misc{align_anything,
+@misc{HK-O1aw,
   author = {HKAIR Lab},
   title = {HK-O1aw Models: A HK Law Large Language Model using O1's Slow Thinking},
   year = {2024},
