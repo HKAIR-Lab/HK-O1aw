@@ -3,6 +3,9 @@
 [包括模型介绍，参数，预期的场景@Sirui Han，讲一讲背景]
 6 ~ 7 行
 
+
+Our model can be accessed [here](https://huggingface.co/HKAIR-Lab/HK-O1aw).
+
 ## Examples
 
 
@@ -133,6 +136,8 @@ How was our dataset constructed? First, we crawled and cleaned raw legal materia
 The dataset contains 15,959 question-thought-answer triples, each equipped with complete chain-of-thought annotations. All content is presented in Simplified Chinese and stored in a structured JSON format. The difficulty level of the questions in this dataset is intermediate to advanced for legal professionals and law school students.
 
 The question types cover case analysis, legal application, explanation of legal concepts and so on. Each QTA triple includes detailed question prompt, a 3-5 step chain-of-thought reasoning process, and answer. The reasoning process involves multi-stage validation, reflective verification steps, and cross-case consistency checks, ensuring diversity in reasoning.
+
+Our training dataset can be accessed [here](https://huggingface.co/datasets/HKAIR-Lab/HK-O1aw-SFT-16K).
 
 ### Prompts for QTA generation
 Here is our prompt template for Question generation:
