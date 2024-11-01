@@ -355,4 +355,4 @@ Please cite the repo if you use the data or code in this repo.
 
 ## License
 
-HK-O1aw models and datasets are released under Apache License 2.0.
+HK-O1aw model and dataset are released under Apache License 2.0.
