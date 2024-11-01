@@ -1,6 +1,9 @@
 # HK-O1aw
 
 [包括模型介绍，参数，预期的场景@Sirui Han，讲一讲背景]
+HK-O1aw is a legal assistant with O1-style complex reasoning capabilities, trained using the Align-Anything framework on the O1aw-Dataset, based on LLaMA-3.1-8B.
+
+HK-O1aw aims to enhance large language models' reasoning capabilities and complex problem-solving abilities in the legal domain (specifically in Hong Kong). More importantly, HK-O1aw has open-sourced all training data, code, and prompts used for synthetic data generation, providing greater convenience for the community and researchers.
 6 ~ 7 行
 
 
