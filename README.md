@@ -1,11 +1,14 @@
 # HK-O1aw
 
-[包括模型介绍，参数，预期的场景@Sirui Han，讲一讲背景]
-HK-O1aw is a legal assistant with O1-style complex reasoning capabilities, trained using the Align-Anything framework on the O1aw-Dataset, based on LLaMA-3.1-8B.
+HK-O1aw is a legal assistant designed to handle complex legal reasoning, specifically for the Hong Kong legal system. It is built using the [Align-Anything](https://github.com/PKU-Alignment/align-anything) framework and trained on the [O1aw-Dataset](https://huggingface.co/datasets/HKAIR-Lab/HK-O1aw-SFT-16K)., based on the LLaMA-3.1-8B model. The primary goal of HK-O1aw is to improve the reasoning and problem-solving abilities of large language models in the legal domain. Importantly, all training data, code, and prompts used for synthetic data generation have been open-sourced, facilitating research and collaboration within the community.
 
-HK-O1aw aims to enhance large language models' reasoning capabilities and complex problem-solving abilities in the legal domain (specifically in Hong Kong). More importantly, HK-O1aw has open-sourced all training data, code, and prompts used for synthetic data generation, providing greater convenience for the community and researchers.
-6 ~ 7 行
+HK-O1aw addresses the need for intelligent legal assistance in Hong Kong, where legal issues often require in-depth analysis and precise reasoning. It integrates advanced O1-style reasoning capabilities, enhancing its ability to perform complex legal analysis, understand context, identify precedents, and interpret statutes. This makes HK-O1aw a significant advancement in applying AI to legal services in Hong Kong, aiding in more efficient, accurate, and accessible legal services and education.
 
+The focus on complex reasoning within Hong Kong's legal data is crucial because the region operates under a common law jurisdiction. In such systems, legal decisions are greatly influenced by precedents and judicial interpretations, requiring detailed analysis and understanding of case law. HK-O1aw is the first complex reasoning model tailored for the common law system, enabling it to effectively navigate precedent-based reasoning and case analysis. This specialization makes it particularly valuable for improving legal services and education in common law jurisdictions.
+
+HK-O1aw currently serves as a valuable assistant for citizens, providing solutions to users' problems with detailed reasoning paths. It also holds significant potential in legal education by acting as an interactive tool that helps students grasp complex legal concepts, interpret statutes, analyze landmark cases, and practice drafting legal documents. This enhances comprehension, encourages critical thinking, and improves academic performance, marking a significant advancement in applying AI to the legal field in Hong Kong and fostering better-informed legal decisions and education.
+
+Looking to the future, we anticipate continuous updates and iterations that will enable HK-O1aw to be deployed in professional settings. It aims to become a specialized legal assistant for lawyers, enhancing efficiency and accuracy within Hong Kong's legal framework. This includes domain-specific applications such as legal research, case analysis, and the drafting of legal opinions.
 
 Our model can be accessed [here](https://huggingface.co/HKAIR-Lab/HK-O1aw).
 
