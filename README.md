@@ -316,7 +316,7 @@ data_cfgs
 
     ```
     # Datasets to use for training
-    train_datasets: HKAIR-Lab/O1aw-sft-15k
+    train_datasets: HKAIR-Lab/HK-O1aw-SFT-16k
     # The split of train datasets
     train_split: train
     ```
