@@ -14,7 +14,7 @@ Our model can be accessed [here](https://huggingface.co/HKAIR-Lab/HK-O1aw).
 <table>
     <thead>
         <tr>
-            <th>Model Case</th>
+            <th>Model Cases</th>
         </tr>
     </thead>
     <tbody>
