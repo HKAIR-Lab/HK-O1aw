@@ -344,7 +344,7 @@ Please cite the repo if you use the data or code in this repo.
 ```bibtex
 @misc{HK-O1aw,
   author = {HKAIR Lab},
-  title = {HK-O1aw Models: A HK Law Large Language Model using O1's Slow Thinking},
+  title = {HK-O1aw Models: Leveraging O1 Slow Thinking in the Development of Hong Kong Legal Large Language Models},
   year = {2024},
   publisher = {GitHub},
   journal = {GitHub repository},
